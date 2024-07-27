@@ -5,6 +5,7 @@ import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import pi.demo.domain.geneTest.entity.GeneTest;
+import pi.demo.domain.pet.dto.request.PetUpdateRequest;
 import pi.demo.global.entity.BaseTimeEntity;
 
 import java.util.ArrayList;
@@ -27,7 +28,7 @@ public class Pet extends BaseTimeEntity {
     private Double weight;
 
     @Column(name = "age")
-    private Long age;
+    private int age;
 
     @Column(name = "gender")
     private String gender;
@@ -37,10 +38,17 @@ public class Pet extends BaseTimeEntity {
 
 
     @Builder
-    public Pet(String name, Double weight, Long age, String gender){
+    public Pet(String name, Double weight, int age, String gender){
         this.name = name;
         this.weight = weight;
         this.age = age;
         this.gender = gender;
+    }
+
+    public void updatePet(PetUpdateRequest petUpdateRequest){
+        this.name = petUpdateRequest.name();
+        this.weight = petUpdateRequest.weight();
+        this.age = petUpdateRequest.age();
+        this.gender = petUpdateRequest.gender();
     }
 }

@@ -3,10 +3,12 @@ package pi.demo.domain.geneResult.entity;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 import pi.demo.domain.geneTest.entity.GeneTest;
 
 @Entity
 @Getter
+@Setter
 @NoArgsConstructor
 public class GeneResult{
 
@@ -14,7 +16,6 @@ public class GeneResult{
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name="geneResult_id")
     private Long id;
-
 
     @Column(name = "disease")
     private String disease;
@@ -36,6 +37,7 @@ public class GeneResult{
         this.status = status;
         this.geneTest = geneTest;
     }
+
 
 
 }
