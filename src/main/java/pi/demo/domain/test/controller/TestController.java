@@ -1,4 +1,4 @@
-package pi.demo.domain.geneTest.controller;
+package pi.demo.domain.test.controller;
 
 
 import io.swagger.v3.oas.annotations.Operation;
@@ -9,12 +9,9 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import pi.demo.domain.geneResult.entity.GeneResult;
-import pi.demo.domain.geneTest.dto.request.GeneTestSaveRequest;
-import pi.demo.domain.geneTest.dto.response.GeneTestResponse;
-import pi.demo.domain.geneTest.entity.GeneTest;
-import pi.demo.domain.geneTest.repository.GeneTestRepository;
-import pi.demo.domain.geneTest.service.GeneTestService;
-import pi.demo.domain.pet.dto.response.PetGetResponse;
+import pi.demo.domain.test.dto.request.TestSaveRequest;
+import pi.demo.domain.test.dto.response.TestResponse;
+import pi.demo.domain.test.service.TestService;
 import pi.demo.global.util.ApiUtil;
 
 import java.io.IOException;
@@ -25,14 +22,14 @@ import java.util.List;
 @Tag(name = "유전자 검사", description = "유전자 검사 관련 Api")
 @RequiredArgsConstructor
 @Slf4j
-public class GeneTestController {
+public class TestController {
 
-    private final GeneTestService geneTestService;
+    private final TestService geneTestService;
 
     @PostMapping("/register")
     @Operation(summary = "register test Info", description = "펫 유전자 검사 결과 등록하는 로직")
     public ResponseEntity<ApiUtil.ApiSuccessResult<Long>> registerGeneTest(
-            @RequestBody GeneTestSaveRequest geneTestSaveRequest,
+            @RequestBody TestSaveRequest geneTestSaveRequest,
             @RequestBody List<GeneResult> geneResults) throws IOException {
 
         Long saveId = geneTestService.registerGeneTest(geneTestSaveRequest, geneResults);
@@ -42,10 +39,10 @@ public class GeneTestController {
 
     @GetMapping("/view/{testId}")
     @Operation(summary = "view test Info", description = "펫 유전자 검사 결과를 확인하는 로직")
-    public ResponseEntity<ApiUtil.ApiSuccessResult<GeneTestResponse>> viewGeneTest(
+    public ResponseEntity<ApiUtil.ApiSuccessResult<TestResponse>> viewGeneTest(
             @PathVariable("testId") Long testId) throws IOException {
 
-        GeneTestResponse geneTestResponse = geneTestService.viewGeneTest(testId);
+        TestResponse geneTestResponse = geneTestService.viewGeneTest(testId);
 
         return ResponseEntity.ok().body(ApiUtil.success(HttpStatus.CREATED,geneTestResponse));
     }

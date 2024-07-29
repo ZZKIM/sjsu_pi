@@ -4,7 +4,7 @@ import jakarta.persistence.*;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-import pi.demo.domain.geneTest.entity.GeneTest;
+import pi.demo.domain.test.entity.Test;
 import pi.demo.domain.pet.dto.request.PetUpdateRequest;
 import pi.demo.global.entity.BaseTimeEntity;
 
@@ -34,7 +34,7 @@ public class Pet extends BaseTimeEntity {
     private String gender;
 
     @OneToMany(mappedBy = "pet", cascade = CascadeType.ALL)
-    private List<GeneTest> genericTests = new ArrayList<>();
+    private List<Test> genericTests = new ArrayList<>();
 
 
     @Builder

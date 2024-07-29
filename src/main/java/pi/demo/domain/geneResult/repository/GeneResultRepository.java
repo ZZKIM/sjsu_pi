@@ -1,12 +1,13 @@
 package pi.demo.domain.geneResult.repository;
 
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import pi.demo.domain.geneResult.entity.GeneResult;
-import pi.demo.domain.geneTest.entity.GeneTest;
 
 import java.util.List;
 
-public interface GeneResultRepository extends JpaRepository<GeneTest, Long> {
+@EnableJpaRepositories
+public interface GeneResultRepository extends JpaRepository<GeneResult, Long> {
 
-    List<GeneResult> findByGeneTestId(Long testId);
+    List<GeneResult> findByTest_Id(Long testId);
 }

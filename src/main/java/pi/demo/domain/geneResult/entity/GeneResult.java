@@ -4,7 +4,7 @@ import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import pi.demo.domain.geneTest.entity.GeneTest;
+import pi.demo.domain.test.entity.Test;
 
 @Entity
 @Getter
@@ -28,14 +28,14 @@ public class GeneResult{
     private Status status;
 
     @ManyToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "geneTest", nullable = false)
-    private GeneTest geneTest;
+    @JoinColumn(name = "test_id", nullable = false)
+    private Test test;
 
-    public GeneResult(String disease, String explanation, Status status, GeneTest geneTest){
+    public GeneResult(String disease, String explanation, Status status, Test geneTest){
         this.disease = disease;
         this.explanation = explanation;
         this.status = status;
-        this.geneTest = geneTest;
+        this.test = geneTest;
     }
 
 
