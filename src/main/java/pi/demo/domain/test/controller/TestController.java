@@ -1,6 +1,5 @@
 package pi.demo.domain.test.controller;
 
-
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
@@ -19,7 +18,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/gene-test")
-@Tag(name = "유전자 검사", description = "유전자 검사 관련 Api")
+@Tag(name = "Gene Test", description = "APIs related to gene testing")
 @RequiredArgsConstructor
 @Slf4j
 public class TestController {
@@ -27,7 +26,7 @@ public class TestController {
     private final TestService geneTestService;
 
     @PostMapping("/register")
-    @Operation(summary = "register test Info", description = "펫 유전자 검사 결과 등록하는 로직")
+    @Operation(summary = "Register Test Info", description = "Register pet gene test results")
     public ResponseEntity<ApiUtil.ApiSuccessResult<Long>> registerGeneTest(
             @RequestBody TestSaveRequest geneTestSaveRequest,
             @RequestBody List<GeneResult> geneResults) throws IOException {
@@ -38,12 +37,12 @@ public class TestController {
     }
 
     @GetMapping("/view/{testId}")
-    @Operation(summary = "view test Info", description = "펫 유전자 검사 결과를 확인하는 로직")
+    @Operation(summary = "View Test Info", description = "View pet gene test results")
     public ResponseEntity<ApiUtil.ApiSuccessResult<TestResponse>> viewGeneTest(
             @PathVariable("testId") Long testId) throws IOException {
 
         TestResponse geneTestResponse = geneTestService.viewGeneTest(testId);
 
-        return ResponseEntity.ok().body(ApiUtil.success(HttpStatus.CREATED,geneTestResponse));
+        return ResponseEntity.ok().body(ApiUtil.success(HttpStatus.CREATED, geneTestResponse));
     }
 }

@@ -6,7 +6,7 @@ server:
 spring:
   jpa:
     hibernate:
-      ddl-auto: update # 기존 테이블을 유지하면서 수정
+      ddl-auto: create # 기존 테이블을 유지하면서 수정
     properties:
       hibernate:
         show_sql: true
@@ -19,6 +19,10 @@ spring:
     username: root
     password: rbfl1234
 
+springdoc:
+  packages-to-scan: pi
+  default-consumes-media-type: application/json;charset=UTF-8
+  default-produces-media-type: application/json;charset=UTF-8
   swagger-ui:
     path: /v3/api-docs
     disable-swagger-default-url: true
